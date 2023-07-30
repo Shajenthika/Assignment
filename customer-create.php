@@ -50,8 +50,10 @@ require 'dbcon.php';
 
                                     if(mysqli_num_rows($query_run) > 0){
                                         foreach($query_run as $district){
+                                            $district_id = $district['id'];
                                             ?>
-                                            <option value="district">
+                                            
+                                            <option value='<?=$district_id ?>'>
                                                 <?= $district['district'] ?>
                                             </option>
 
