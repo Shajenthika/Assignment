@@ -53,7 +53,24 @@ require 'dbcon.php';
                                             <div class="mb-3">
                                                 <label for="">District</label>
                                                 <p class="form-control">
-                                                    <?=$customer['district']; ?>
+                                                <?php
+                                                    $district_id = $customer['district'];
+                                                    $query = "SELECT district FROM district WHERE id='$district_id'";
+                                                    $query_run = mysqli_query($con,$query);
+
+                                                    if(mysqli_num_rows($query_run) > 0){
+                                                        $district = mysqli_fetch_array($query_run);
+                                                        
+                                                        ?>
+                                                        <?= $district['district'] ?>
+                                                       
+
+                                                        <?php
+                                                    }
+                                                    else{
+                                                        echo "<h5>No Districts Found.</h5>";
+                                                    }
+                                                ?>
                                                 </p>
                                             </div>
                                             <div class="mb-3">
