@@ -33,8 +33,9 @@ require 'dbcon.php';
 
                                         if(mysqli_num_rows($query_run) > 0){
                                             foreach($query_run as $item_category){
+                                                $category_id = $item_category['id'];
                                                 ?>
-                                                <option value="item_category">
+                                                <option value='<?=$category_id ?>'>
                                                     <?= $item_category['category'] ?>
                                                 </option>
 
@@ -57,8 +58,9 @@ require 'dbcon.php';
 
                                         if(mysqli_num_rows($query_run) > 0){
                                             foreach($query_run as $item_subcategory){
+                                                $subcategory_id = $item_subcategory['id'];
                                                 ?>
-                                                <option value="item_subcategory">
+                                                <option value='<?=$subcategory_id ?>'>
                                                     <?= $item_subcategory['sub_category'] ?>
                                                 </option>
 
