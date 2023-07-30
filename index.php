@@ -18,8 +18,8 @@
                         <div class="card-header">
                             <h4>Customer Details
                             <div class="d-flex justify-content-end">
-                                <form role="search" class="input-group">
-                                    <input class="form-control rounded-pill" type="search" placeholder="Search" aria-label="Search">
+                                <form role="search" class="input-group" action="" method="GET">
+                                    <input class="form-control rounded-pill" name ="search"  value="<?php if(isset($_GET['search'])){echo $_GET['search']; } ?>" type="search" placeholder="Search" aria-label="Search">
                                     <div class="input-group-append ms-2">
                                     <button class="btn btn-outline-success" type="submit">Search</button>
                                     </div>
@@ -44,37 +44,74 @@
                                 </thead>
                                 <tbody>
                                     <?php
-                                        $query = "SELECT * FROM customer";
-                                        $query_run = mysqli_query($con,$query);
+                                        if(isset($_GET['search'])){
+                                            $filtervalues = $_GET['search'];
+                                            $query = "SELECT * FROM customer WHERE CONCAT(first_name,middle_name,last_name) LIKE '%$filtervalues%'";
+                                            $query_run = mysqli_query($con,$query);
 
-                                        if(mysqli_num_rows($query_run) > 0){
-                                            foreach($query_run as $customer){
-                                                ?>
-                                                <tr>
-                                                    <!-- <td><?= $customer['id'] ?></td> -->
-                                                    <td><?= $customer['title'] ?></td>
-                                                    <td><?= $customer['first_name'] ?></td>
-                                                    <td><?= $customer['last_name'] ?></td>
-                                                    <td><?= $customer['contact_no'] ?></td>
-                                                    <td><?= $customer['district'] ?></td>
-                                                    <td>
-                                                        <a href="customer-view.php?id=<?= $customer['id'] ?>" class="btn btn-info btn-sm">View</a>
-                                                        <a href="customer-edit.php?id=<?= $customer['id'] ?>" class="btn btn-success btn-sm">Edit</a>
-                                                        <form action="code.php" method="POST" class="d-inline">
-                                                            <button type="submit" name="delete_customer" value="<?=$customer['id']; ?>" class="btn btn-danger btn-sm">Delete</a>
+                                            if(mysqli_num_rows($query_run) > 0){
+                                                foreach($query_run as $customer){
+                                                    ?>
+                                                    <tr>
+                                                        <!-- <td><?= $customer['id'] ?></td> -->
+                                                        <td><?= $customer['title'] ?></td>
+                                                        <td><?= $customer['first_name'] ?></td>
+                                                        <td><?= $customer['last_name'] ?></td>
+                                                        <td><?= $customer['contact_no'] ?></td>
+                                                        <td><?= $customer['district'] ?></td>
+                                                        <td>
+                                                            <a href="customer-view.php?id=<?= $customer['id'] ?>" class="btn btn-info btn-sm">View</a>
+                                                            <a href="customer-edit.php?id=<?= $customer['id'] ?>" class="btn btn-success btn-sm">Edit</a>
+                                                            <form action="code.php" method="POST" class="d-inline">
+                                                                <button type="submit" name="delete_customer" value="<?=$customer['id']; ?>" class="btn btn-danger btn-sm">Delete</a>
+                                                                
+                                                            </form>
                                                             
-                                                        </form>
-                                                        
-                                                    </td>
-                                                </tr>
+                                                        </td>
+                                                    </tr>
 
-                                                <?php
+                                                    <?php
 
+                                                }
+                                            }
+                                            else{
+                                                echo "<h5>No Records Found.</h5>";
                                             }
                                         }
                                         else{
-                                            echo "<h5>No Records Found.</h5>";
+                                            $query = "SELECT * FROM customer";
+                                            $query_run = mysqli_query($con,$query);
+
+                                            if(mysqli_num_rows($query_run) > 0){
+                                                foreach($query_run as $customer){
+                                                    ?>
+                                                    <tr>
+                                                        <!-- <td><?= $customer['id'] ?></td> -->
+                                                        <td><?= $customer['title'] ?></td>
+                                                        <td><?= $customer['first_name'] ?></td>
+                                                        <td><?= $customer['last_name'] ?></td>
+                                                        <td><?= $customer['contact_no'] ?></td>
+                                                        <td><?= $customer['district'] ?></td>
+                                                        <td>
+                                                            <a href="customer-view.php?id=<?= $customer['id'] ?>" class="btn btn-info btn-sm">View</a>
+                                                            <a href="customer-edit.php?id=<?= $customer['id'] ?>" class="btn btn-success btn-sm">Edit</a>
+                                                            <form action="code.php" method="POST" class="d-inline">
+                                                                <button type="submit" name="delete_customer" value="<?=$customer['id']; ?>" class="btn btn-danger btn-sm">Delete</a>
+                                                                
+                                                            </form>
+                                                            
+                                                        </td>
+                                                    </tr>
+
+                                                    <?php
+
+                                                }
+                                            }
+                                            else{
+                                                echo "<h5>No Records Found.</h5>";
+                                            }
                                         }
+                                        
                                         
                                     ?>
                                     
@@ -101,7 +138,7 @@
                             <h4>Item Details
                             <div class="d-flex justify-content-end">
                                 <form role="search" class="input-group">
-                                    <input class="form-control rounded-pill" type="search" placeholder="Search" aria-label="Search">
+                                    <input class="form-control rounded-pill" name ="search2"  value="<?php if(isset($_GET['search2'])){echo $_GET['search2']; } ?>" type="search" placeholder="Search" aria-label="Search">
                                     <div class="input-group-append ms-2">
                                     <button class="btn btn-outline-success" type="submit">Search</button>
                                     </div>
@@ -126,37 +163,75 @@
                                 </thead>
                                 <tbody>
                                     <?php
-                                        $query = "SELECT * FROM item";
-                                        $query_run = mysqli_query($con,$query);
+                                        if(isset($_GET['search2'])){
+                                            $filtervalues = $_GET['search2'];
+                                            $query = "SELECT * FROM item WHERE CONCAT(item_name,item_category,item_subcategory) LIKE '%$filtervalues%'";
+                                            $query_run = mysqli_query($con,$query);
 
-                                        if(mysqli_num_rows($query_run) > 0){
-                                            foreach($query_run as $item){
-                                                ?>
-                                                <tr>
-                                                    <!-- <td><?= $item['id'] ?></td> -->
-                                                    <td><?= $item['item_code'] ?></td>
-                                                    <td><?= $item['item_name'] ?></td>
-                                                    <td><?= $item['item_category'] ?></td>
-                                                    <td><?= $item['item_subcategory'] ?></td>
-                                                    <td><?= $item['quantity'] ?></td>
-                                                    <td><?= $item['unit_price'] ?></td>
-                                                    <td>
-                                                        <a href="item-view.php?id=<?= $item['id'] ?>" class="btn btn-info btn-sm">View</a>
-                                                        <a href="item-edit.php?id=<?= $item['id'] ?>" class="btn btn-success btn-sm">Edit</a>
-                                                        <form action="code.php" method="POST" class="d-inline">
-                                                            <button type="submit" name="delete_item" value="<?=$item['id']; ?>" class="btn btn-danger btn-sm">Delete</a>
+                                            if(mysqli_num_rows($query_run) > 0){
+                                                foreach($query_run as $item){
+                                                    ?>
+                                                    <tr>
+                                                        <!-- <td><?= $item['id'] ?></td> -->
+                                                        <td><?= $item['item_code'] ?></td>
+                                                        <td><?= $item['item_name'] ?></td>
+                                                        <td><?= $item['item_category'] ?></td>
+                                                        <td><?= $item['item_subcategory'] ?></td>
+                                                        <td><?= $item['quantity'] ?></td>
+                                                        <td><?= $item['unit_price'] ?></td>
+                                                        <td>
+                                                            <a href="item-view.php?id=<?= $item['id'] ?>" class="btn btn-info btn-sm">View</a>
+                                                            <a href="item-edit.php?id=<?= $item['id'] ?>" class="btn btn-success btn-sm">Edit</a>
+                                                            <form action="code.php" method="POST" class="d-inline">
+                                                                <button type="submit" name="delete_item" value="<?=$item['id']; ?>" class="btn btn-danger btn-sm">Delete</a>
+                                                                
+                                                            </form>
                                                             
-                                                        </form>
-                                                        
-                                                    </td>
-                                                </tr>
+                                                        </td>
+                                                    </tr>
 
-                                                <?php
+                                                    <?php
 
+                                                }
+                                            }
+                                            else{
+                                                echo "<h5>No Records Found.</h5>";
                                             }
                                         }
                                         else{
-                                            echo "<h5>No Records Found.</h5>";
+                                            $query = "SELECT * FROM item";
+                                            $query_run = mysqli_query($con,$query);
+
+                                            if(mysqli_num_rows($query_run) > 0){
+                                                foreach($query_run as $item){
+                                                    ?>
+                                                    <tr>
+                                                        <!-- <td><?= $item['id'] ?></td> -->
+                                                        <td><?= $item['item_code'] ?></td>
+                                                        <td><?= $item['item_name'] ?></td>
+                                                        <td><?= $item['item_category'] ?></td>
+                                                        <td><?= $item['item_subcategory'] ?></td>
+                                                        <td><?= $item['quantity'] ?></td>
+                                                        <td><?= $item['unit_price'] ?></td>
+                                                        <td>
+                                                            <a href="item-view.php?id=<?= $item['id'] ?>" class="btn btn-info btn-sm">View</a>
+                                                            <a href="item-edit.php?id=<?= $item['id'] ?>" class="btn btn-success btn-sm">Edit</a>
+                                                            <form action="code.php" method="POST" class="d-inline">
+                                                                <button type="submit" name="delete_item" value="<?=$item['id']; ?>" class="btn btn-danger btn-sm">Delete</a>
+                                                                
+                                                            </form>
+                                                            
+                                                        </td>
+                                                    </tr>
+
+                                                    <?php
+
+                                                }
+                                            }
+                                            else{
+                                                echo "<h5>No Records Found.</h5>";
+                                            }
+                                        
                                         }
                                         
                                     ?>
