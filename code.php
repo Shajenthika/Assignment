@@ -55,31 +55,16 @@ if(isset($_POST['save_customer'])){
     $last_name = mysqli_real_escape_string($con,$_POST['last-name']);
     $contact_no = mysqli_real_escape_string($con,$_POST['contact-no']);
     $district = mysqli_real_escape_string($con,$_POST['district']);
-    
-    $district_id = 0;
-    $district_query = "SELECT id FROM district WHERE district = '$district'";
-    $result = mysqli_query($con,$district_query);
-    //$result = $con->query($district_query);
-
-    if ($result->num_rows > 0) {
-        // If the district exists, get its ID
-        //$district_data = mysqli_fetch_assoc($result);
-        $district_data = $result->fetch_assoc();
-        $district_id = $district_data['id'];
-    }else {
-        echo "Error: " . $con->error;
-        exit;
-    }
 
     $query = "INSERT INTO customer (title,first_name,middle_name,last_name,contact_no,district)
-        VALUES('$title','$first_name','$middle_name','$last_name','$contact_no','$district_id')";
+        VALUES('$title','$first_name','$middle_name','$last_name','$contact_no','$district')";
     
     $query_run = mysqli_query($con,$query);
     if($query_run){
-        echo "Customer Created Successfully";
-        // $_SESSION['message'] = "Customer Created Successfully";
-        // header("Location: customer-create.php");
-        // exit(0);
+        //echo "Customer Created Successfully";
+        $_SESSION['message'] = "Customer Created Successfully";
+        header("Location: customer-create.php");
+        exit(0);
     }
     else{
         // Handle the error if the customer insertion fails
@@ -100,38 +85,22 @@ if(isset($_POST['save_item'])){
     $item_subcategory = mysqli_real_escape_string($con,$_POST['item-subcategory']);
     $quantity = mysqli_real_escape_string($con,$_POST['quantity']);
     $unit_price = mysqli_real_escape_string($con,$_POST['unit-price']);
-  
-    // $district_id = 0;
-    // $district_query = "SELECT id FROM district WHERE district = '$district'";
-    // $result = mysqli_query($con,$district_query);
-    // //$result = $con->query($district_query);
-
-    // if ($result->num_rows > 0) {
-    //     // If the district exists, get its ID
-    //     //$district_data = mysqli_fetch_assoc($result);
-    //     $district_data = $result->fetch_assoc();
-    //     $district_id = $district_data['id'];
-    // }else {
-    //     echo "Error: " . $con->error;
-    //     exit;
-    // }
 
     $query = "INSERT INTO item (item_code,item_category,item_subcategory,item_name,quantity,unit_price)
         VALUES('$item_code','$item_category','$item_subcategory','$item_name','$quantity','$unit_price')";
     
     $query_run = mysqli_query($con,$query);
     if($query_run){
-        echo "Item Created Successfully";
-        // $_SESSION['message'] = "Item Created Successfully";
-        header("Location: item-view.php");
+        //echo "Item Created Successfully";
+        $_SESSION['message'] = "Item Created Successfully";
+        header("Location: item-add.php");
         exit(0);
     }
     else{
         // Handle the error if the customer insertion fails
-        echo "Error inserting customer: " . mysqli_error($con);
-        exit;
-        // $_SESSION['message'] = "Item Is Not Created";
-        header("Location: item-view.php");
+        //echo "Error inserting customer: " . mysqli_error($con);
+        $_SESSION['message'] = "Item Is Not Created";
+        header("Location: item-add.php");
         exit(0);
     }
     $con->close();
