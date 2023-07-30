@@ -35,13 +35,47 @@ require 'dbcon.php';
                                             <div class="mb-3">
                                                 <label for="">Item Category</label>
                                                 <p class="form-control">
-                                                    <?=$item['item_category']; ?>
+                                                <?php
+                                                    $item_category_id = $item['item_category'];
+                                                    $query = "SELECT category FROM item_category WHERE id='$item_category_id'";
+                                                    $query_run = mysqli_query($con,$query);
+
+                                                    if(mysqli_num_rows($query_run) > 0){
+                                                        $item_category = mysqli_fetch_array($query_run);
+                                                        
+                                                        ?>
+                                                        <?= $item_category['category'] ?>
+                                                       
+
+                                                        <?php
+                                                    }
+                                                    else{
+                                                        echo "<h5>No item category Found.</h5>";
+                                                    }
+                                                ?>
                                                 </p>
                                             </div>
                                             <div class="mb-3">
                                                 <label for="">Item Sub Category</label>
                                                 <p class="form-control">
-                                                    <?=$item['item_subcategory']; ?>
+                                                <?php
+                                                    $item_subcategory_id = $item['item_subcategory'];
+                                                    $query = "SELECT sub_category FROM item_subcategory WHERE id='$item_subcategory_id'";
+                                                    $query_run = mysqli_query($con,$query);
+
+                                                    if(mysqli_num_rows($query_run) > 0){
+                                                        $item_subcategory = mysqli_fetch_array($query_run);
+                                                        
+                                                        ?>
+                                                        <?= $item_subcategory['sub_category'] ?>
+                                                       
+
+                                                        <?php
+                                                    }
+                                                    else{
+                                                        echo "<h5>No item category Found.</h5>";
+                                                    }
+                                                ?>
                                                 </p>
                                             </div>
                                             <div class="mb-3">
