@@ -7,7 +7,7 @@ require 'dbcon.php';
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4>Customer Edit 
+                        <h4>Customer View 
                         </h4>
                     </div>
                     <div class="card-body">
