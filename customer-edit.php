@@ -3,7 +3,7 @@ session_start();
 require 'dbcon.php';
 ?>
 <?php include('header.php') ?>
-    <div class="container mt-5">
+    <div class="container mt-5 mb-5">
 
         <?php include('message.php'); ?>
 
