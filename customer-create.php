@@ -27,7 +27,7 @@ require 'dbcon.php';
                             </div>
                             <div class="mb-3">
                                 <label for="">First Name</label>
-                                <input type="text" name="first-name" class="form-control" id="">
+                                <input type="text" name="first-name" required class="form-control" id="">
                             </div>
                             <div class="mb-3">
                                 <label for="">Middle Name</label>
@@ -35,11 +35,11 @@ require 'dbcon.php';
                             </div>
                             <div class="mb-3">
                                 <label for="">Last Name</label>
-                                <input type="text" name="last-name" class="form-control" id="">
+                                <input type="text" name="last-name" required class="form-control" id="">
                             </div>
                             <div class="mb-3">
                                 <label for="">Contact Number</label>
-                                <input type="text" name="contact-no" class="form-control" id="">
+                                <input type="text" name="contact-no" required class="form-control" id="">
                             </div>
                             <div class="mb-3">
                                 <label for="">District</label>
@@ -57,12 +57,6 @@ require 'dbcon.php';
 
                                             <?php
                                         }
-                                        // if(isset($_GET['id'])){
-                                        //     $district_id = mysqli_real_escape_string($con,$_GET['id']);
-                                        //     $query = "SELECT * FROM district WHERE id = '$district_id'";
-                                        //     $query_run = mysqli_query($con,$query);
-                                        // }
-
                                     }
                                     else{
                                         echo "<h5>No Districts Found.</h5>";
