@@ -2,15 +2,7 @@
 session_start();
 require 'dbcon.php';
 ?>
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Customer Edit</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-  </head> 
-  <body>
+<?php include('header.php') ?>
     <div class="container mt-5">
 
         <?php include('message.php'); ?>
@@ -32,65 +24,66 @@ require 'dbcon.php';
                             if(mysqli_num_rows($query_run) > 0){
                                 $customer = mysqli_fetch_array($query_run);
                                 ?>
-                                <form action="code.php" method="post">
-                                    <input type="text" name="customer_id" value="<?=$customer_id['id']; ?>" id="">
-                                    <div class="mb-3">
-                                        <label for="">Title</label>
-                                        <select id="" name="title" value="<?=$customer['title']; ?>" class="form-control">
-                                            <option value="Mr">Mr</option>
-                                            <option value="Mrs">Mrs</option>
-                                            <option value="Miss">Miss</option>
-                                            <option value="Dr">Dr</option>
-                                        </select>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="">First Name</label>
-                                        <input type="text" name="first-name" value="<?=$customer['first_name']; ?>" class="form-control" id="">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="">Middle Name</label>
-                                        <input type="text" name="middle-name" value="<?=$customer['middle_name']; ?>" class="form-control" id="">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="">Last Name</label>
-                                        <input type="text" name="last-name" value="<?=$customer['last_name']; ?>" class="form-control" id="">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="">Contact Number</label>
-                                        <input type="text" name="contact-no" value="<?=$customer['contact_no']; ?>" class="form-control" id="">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="">District</label>
-                                        <select id="" name="district" value="<?=$customer['district']; ?>" class="form-control">
-                                        <?php
-                                            $query = "SELECT * FROM district";
-                                            $query_run = mysqli_query($con,$query);
 
-                                            if(mysqli_num_rows($query_run) > 0){
-                                                foreach($query_run as $district){
-                                                    ?>
-                                                    <option value="district">
-                                                        <?= $district['district'] ?>
-                                                    </option>
+                                <form action="code.php" method="POST">
+                                            <input type="hidden" name="customer_id" value="<?=$customer_id; ?>" id="">
+                                            <div class="mb-3">
+                                                <label for="">Title</label>
+                                                <select id="" name="title" value="<?=$customer['title']; ?>" class="form-control">
+                                                    <option value="Mr">Mr</option>
+                                                    <option value="Mrs">Mrs</option>
+                                                    <option value="Miss">Miss</option>
+                                                    <option value="Dr">Dr</option>
+                                                </select>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="">First Name</label>
+                                                <input type="text" name="first-name" value="<?=$customer['first_name']; ?>" class="form-control" id="">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="">Middle Name</label>
+                                                <input type="text" name="middle-name" value="<?=$customer['middle_name']; ?>" class="form-control" id="">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="">Last Name</label>
+                                                <input type="text" name="last-name" value="<?=$customer['last_name']; ?>" class="form-control" id="">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="">Contact Number</label>
+                                                <input type="text" name="contact-no" value="<?=$customer['contact_no']; ?>" class="form-control" id="">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="">District</label>
+                                                <select id="" name="district" value="<?=$customer['district']; ?>" class="form-control">
+                                                <?php
+                                                    $query = "SELECT * FROM district";
+                                                    $query_run = mysqli_query($con,$query);
 
-                                                    <?php
-                                                }
-                                            }
-                                            else{
-                                                echo "<h5>No Districts Found.</h5>";
-                                            }
-                                            
-                                        ?>
-                                        </select>
-                                    </div>
-                                    <div class="mb-3">
-                                        <button type="submit" name="update_customer" class="btn btn-primary">Update</button>
-                                        <a href="index.php" class="btn btn-danger float-end">BACK</a>
-                                    </div>
+                                                    if(mysqli_num_rows($query_run) > 0){
+                                                        foreach($query_run as $district){
+                                                            ?>
+                                                            <option value="district">
+                                                                <?= $district['district'] ?>
+                                                            </option>
+
+                                                            <?php
+                                                        }
+                                                    }
+                                                    else{
+                                                        echo "<h5>No Districts Found.</h5>";
+                                                    }
+                                                    
+                                                ?>
+                                                </select>
+                                            </div>
+                                            <div class="mb-3">
+                                                <button type="submit" name="update_customer" class="btn btn-primary">Update</button>
+                                                <a href="index.php" class="btn btn-danger float-end">BACK</a>
+                                            </div>
                                 </form>
 
                                 <?php
-
+                                
                             }
                             else{
                                 echo "<h4>No such Id Found.</h4>";
@@ -104,9 +97,4 @@ require 'dbcon.php';
             </div>
         </div>
     </div>
-
-
-    
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
-  </body>
-</html>
+<?php include('footer.php') ?>

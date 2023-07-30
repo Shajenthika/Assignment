@@ -1,16 +1,15 @@
 <?php
+    session_start();
     require 'dbcon.php';
 ?>
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Assignment</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-  </head>
-  <body>
-    <div class="container">
+
+<?php include('header.php') ?>
+
+
+    <div class="container mt-4">
+
+        <?php include('message.php') ?>
+
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
@@ -48,9 +47,13 @@
                                                 <td><?= $customer['contact_no'] ?></td>
                                                 <td><?= $customer['district'] ?></td>
                                                 <td>
-                                                    <a href="" class="btn btn-info btn-sm">View</a>
+                                                    <a href="customer-view.php?id=<?= $customer['id'] ?>" class="btn btn-info btn-sm">View</a>
                                                     <a href="customer-edit.php?id=<?= $customer['id'] ?>" class="btn btn-success btn-sm">Edit</a>
-                                                    <a href="" class="btn btn-danger btn-sm">Delete</a>
+                                                    <form action="code.php" method="POST" class="d-inline">
+                                                        <button type="submit" name="delete_customer" value="<?=$customer['id']; ?>" class="btn btn-danger btn-sm">Delete</a>
+                                                        
+                                                    </form>
+                                                    
                                                 </td>
                                             </tr>
 
@@ -72,8 +75,4 @@
         </div>
     </div>
 
-
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
-  </body>
-</html>
+<?php include('footer.php') ?>
