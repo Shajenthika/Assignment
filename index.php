@@ -254,18 +254,42 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>Reports
-                            <div class="d-flex justify-content-end ms-2">
-                                <a href="item-add.php" class="btn btn-primary btn-sm">Invoice Report</a>
-                                <a href="item-add.php" class="btn btn-primary btn-sm ms-3">Invoice Item Report</a>
-                                <a href="item-add.php" class="btn btn-primary btn-sm ms-3">Item Report</a>
-                            </div>
-                            </h4>
+                            <h4>Reports</h4>
                         </div>
                         <div class="card-body">
-                            <a href="item-add.php" class="btn btn-primary btn-sm">Invoice Report</a>
-                            <a href="item-add.php" class="btn btn-primary btn-sm">Invoice Item Report</a>
-                            <a href="item-add.php" class="btn btn-primary btn-sm">Item Report</a>
+                            <div class="container mt-5">
+                                <form method="post" action="invoice_report.php">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <label for="start_date">Start Date:</label>
+                                            <input type="date" name="start_date" class="form-control">
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label for="end_date">End Date:</label>
+                                            <input type="date" name="end_date" class="form-control">
+                                        </div>
+                                        
+                                        <div class="col-md-3">
+                                            <label for="">Report Type:</label>
+                                            <select id="" name="report" class="form-control">
+                                                <option value="invoice_report">Invoice Report</option>
+                                                <option value="invoice_item_report">Invoice Item Report</option>
+                                                <option value="item_report">Item Report</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <button type="submit" name="search_report" class="btn btn-outline-success mt-4">Search</button>
+                                        </div>
+                                    </div>
+                                </form>
+
+                                <hr>
+                                <a href="item-add.php" class="btn btn-primary btn-sm">Invoice Report</a>
+                                <a href="item-add.php" class="btn btn-primary btn-sm">Invoice Item Report</a>
+                                <a href="item-add.php" class="btn btn-primary btn-sm">Item Report</a>
+
+                            </div>
+                            
                         </div>
                     </div>
                 </div>
