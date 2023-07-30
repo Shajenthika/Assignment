@@ -44,8 +44,9 @@ require 'dbcon.php';
 
                                                         if(mysqli_num_rows($query_run) > 0){
                                                             foreach($query_run as $item_category){
+                                                                $category_id = $item_category['id'];
                                                                 ?>
-                                                                <option value="item_category">
+                                                                <option value='<?=$category_id ?>'>
                                                                     <?= $item_category['category'] ?>
                                                                 </option>
 
@@ -63,15 +64,16 @@ require 'dbcon.php';
                                             </div>
                                             <div class="mb-3">
                                                 <label for="">Item Sub Category</label>
-                                                <select id="" name="item-category" value="<?=$item['item_subcategory']; ?>" class="form-control">
+                                                <select id="" name="item-subcategory" value="<?=$item['item_subcategory']; ?>" class="form-control">
                                                     <?php
                                                         $query = "SELECT * FROM item_subcategory";
                                                         $query_run = mysqli_query($con,$query);
 
                                                         if(mysqli_num_rows($query_run) > 0){
                                                             foreach($query_run as $item_subcategory){
+                                                                $subcategory_id = $item_subcategory['id'];
                                                                 ?>
-                                                                <option value="item_subcategory">
+                                                                <option value='<?=$subcategory_id ?>'>
                                                                     <?= $item_subcategory['sub_category'] ?>
                                                                 </option>
 
