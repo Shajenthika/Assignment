@@ -17,14 +17,17 @@
                     <div class="card">
                         <div class="card-header">
                             <h4>Customer Details
-                            <!-- <form action="code.php" method="POST" class="d-inline"> -->
-                            <form class="d-flex" role="search" class="d-inline">
-                                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                                <button class="btn btn-outline-success" type="submit">Search</button>
-                                <a href="customer-create.php" class="btn btn-primary d-inline">Add</a>
-                            </form>
-                            
+                            <div class="d-flex justify-content-end">
+                                <form role="search" class="input-group">
+                                    <input class="form-control rounded-pill" type="search" placeholder="Search" aria-label="Search">
+                                    <div class="input-group-append ms-2">
+                                    <button class="btn btn-outline-success" type="submit">Search</button>
+                                    </div>
+                                </form>
+                                <a href="customer-create.php" class="btn btn-primary ms-2">Add</a>
+                            </div>
                             </h4>
+                            
                         </div>
                         <div class="card-body">
                             <table class="table table-bordered table-striped">
@@ -96,7 +99,16 @@
                     <div class="card">
                         <div class="card-header">
                             <h4>Item Details
-                                <a href="item-add.php" class="btn btn-primary float-end">Add</a>
+                            <div class="d-flex justify-content-end">
+                                <form role="search" class="input-group">
+                                    <input class="form-control rounded-pill" type="search" placeholder="Search" aria-label="Search">
+                                    <div class="input-group-append ms-2">
+                                    <button class="btn btn-outline-success" type="submit">Search</button>
+                                    </div>
+                                </form>
+                                <a href="item-add.php" class="btn btn-primary ms-2">Add</a>
+                            </div>
+                                
                             </h4>
                         </div>
                         <div class="card-body">
@@ -168,6 +180,11 @@
                     <div class="card">
                         <div class="card-header">
                             <h4>Reports
+                            <div class="d-flex justify-content-end ms-2">
+                                <a href="item-add.php" class="btn btn-primary btn-sm">Invoice Report</a>
+                                <a href="item-add.php" class="btn btn-primary btn-sm ms-3">Invoice Item Report</a>
+                                <a href="item-add.php" class="btn btn-primary btn-sm ms-3">Item Report</a>
+                            </div>
                             </h4>
                         </div>
                         <div class="card-body">
