@@ -3,6 +3,7 @@
     open XAMPP server, then start the Apache and MYSQL 
     Go to the browser, open http://localhost/phpmyadmin/, then create new database called assignment1
     After that import the assignment1.sql
+    Open visual studio code editor, write the codes
     Open http://localhost/Assignment/index.php, we can see the website. 
 
 # Assumptions
