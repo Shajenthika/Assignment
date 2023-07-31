@@ -8,5 +8,5 @@
 # Assumptions
     Show the customer details, item details, and reports in one page.
     For the actions(view,edit,delete) and add details, it will redirect to the another page.
-    when search any letter, it will show details under the cuctomer or details on the same page. 
+    when search any letter, it will show details under the cuctomer or item details on the same page. 
     Reports also like that, it will show the reports on the same page under the reports.
