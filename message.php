@@ -3,8 +3,7 @@
 
 ?>
     <div class="alert alert-warning alert-dismissible fade show" role="alert">
-        <!-- there is a problem with displaying message -->
-        <strong>Hey!</strong><?php $_SESSION['message']; ?>
+        <strong>Hey!  </strong><?php echo $_SESSION['message']; ?>
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
 <?php
