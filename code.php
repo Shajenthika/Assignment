@@ -61,18 +61,14 @@ if(isset($_POST['save_customer'])){
     
     $query_run = mysqli_query($con,$query);
     if($query_run){
-        //echo "Customer Created Successfully";
         $_SESSION['message'] = "Customer Created Successfully";
         header("Location: customer-create.php");
         exit(0);
     }
     else{
-        // Handle the error if the customer insertion fails
-        echo "Error inserting customer: " . mysqli_error($con);
-        exit;
-        // $_SESSION['message'] = "Customer Is Not Created";
-        // header("Location: customer-create.php");
-        // exit(0);
+        $_SESSION['message'] = "Customer Is Not Created";
+        header("Location: customer-create.php");
+        exit(0);
     }
     $con->close();
 }
@@ -91,14 +87,11 @@ if(isset($_POST['save_item'])){
     
     $query_run = mysqli_query($con,$query);
     if($query_run){
-        //echo "Item Created Successfully";
         $_SESSION['message'] = "Item Created Successfully";
         header("Location: item-add.php");
         exit(0);
     }
     else{
-        // Handle the error if the customer insertion fails
-        //echo "Error inserting customer: " . mysqli_error($con);
         $_SESSION['message'] = "Item Is Not Created";
         header("Location: item-add.php");
         exit(0);
