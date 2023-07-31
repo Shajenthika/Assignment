@@ -302,9 +302,19 @@
                                                         </div>
                                                       <?php  
                                                     } elseif ($selected_report === "invoice_item_report") {
-                                                        include("invoice_item_report.php");
+                                                        ?>
+                                                        <div class="card-header">
+                                                            <h4>Invoice Item Report</h4>
+                                                            <?php include("invoice_item_report.php"); ?>
+                                                        </div>
+                                                      <?php 
                                                     } elseif ($selected_report === "item_report") {
-                                                        include("item_report.php");
+                                                        ?>
+                                                            <div class="card-header">
+                                                                <h4>Item Report</h4>
+                                                                <?php include("item_report.php"); ?>
+                                                            </div>
+                                                        <?php 
                                                     } else {
                                                         echo "Invalid report selection.";
                                                     }
