@@ -244,6 +244,7 @@
             </div>
         </div>
     </a>
+
     <!-- Reports -->
     <a name="report">
         <div class="container mt-4 mb-4">
@@ -258,7 +259,7 @@
                         </div>
                         <div class="card-body">
                             <div class="container mt-5">
-                                <form method="post" action="invoice_report.php">
+                                <form method="GET" action="">
                                     <div class="row">
                                         <div class="col-md-3">
                                             <label for="start_date">Start Date:</label>
@@ -271,23 +272,49 @@
                                         
                                         <div class="col-md-3">
                                             <label for="">Report Type:</label>
-                                            <select id="" name="report" class="form-control">
+                                            <select id="" name="search_report" class="form-control">
                                                 <option value="invoice_report">Invoice Report</option>
                                                 <option value="invoice_item_report">Invoice Item Report</option>
                                                 <option value="item_report">Item Report</option>
                                             </select>
                                         </div>
                                         <div class="col-md-3">
-                                            <button type="submit" name="search_report" class="btn btn-outline-success mt-4">Search</button>
+                                            <button type="submit" name="" class="btn btn-outline-success mt-4">Search</button>
                                         </div>
                                     </div>
                                 </form>
 
                                 <hr>
-                                <a href="item-add.php" class="btn btn-primary btn-sm">Invoice Report</a>
-                                <a href="item-add.php" class="btn btn-primary btn-sm">Invoice Item Report</a>
-                                <a href="item-add.php" class="btn btn-primary btn-sm">Item Report</a>
+                                <!-- make report -->
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="card">
+                                            
+                                            <?php
+                                                if (isset($_GET['search_report'])) {
+                                                    $selected_report = $_GET['search_report'];
 
+                                                    if ($selected_report === "invoice_report") {
+                                                        ?>
+                                                        <div class="card-header">
+                                                            <h4>Invoice Report</h4>
+                                                            <?php include("invoice_report.php"); ?>
+                                                        </div>
+                                                      <?php  
+                                                    } elseif ($selected_report === "invoice_item_report") {
+                                                        include("invoice_item_report.php");
+                                                    } elseif ($selected_report === "item_report") {
+                                                        include("item_report.php");
+                                                    } else {
+                                                        echo "Invalid report selection.";
+                                                    }
+                                                }
+                                            ?>
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             
                         </div>
