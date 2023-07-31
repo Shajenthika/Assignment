@@ -11,7 +11,7 @@
             INNER JOIN item ON invoice_master.item_id=item.id
             INNER JOIN invoice ON invoice_master.invoice_no=invoice.invoice_no
             INNER JOIN customer ON invoice.customer = customer.id
-            INNER JOIN item_category ON item.item_category=item_category.category
+            INNER JOIN item_category ON item.item_category=item_category.id
             WHERE date BETWEEN '$start_date' AND '$end_date'
             GROUP BY invoice.invoice_no, invoice.date, customer.first_name
             ORDER BY invoice.date";
